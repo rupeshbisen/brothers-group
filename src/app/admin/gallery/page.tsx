@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import {
   Image as ImageIcon,
   Video,
@@ -43,7 +43,7 @@ interface GalleryItem {
   created_at: string;
 }
 
-export default function AdminGalleryPage() {
+function AdminGalleryContent() {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -544,5 +544,22 @@ export default function AdminGalleryPage() {
         )}
       </Modal>
     </div>
+  );
+}
+
+export default function AdminGalleryPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading gallery...</p>
+          </div>
+        </div>
+      }
+    >
+      <AdminGalleryContent />
+    </Suspense>
   );
 }
