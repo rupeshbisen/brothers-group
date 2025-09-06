@@ -1,0 +1,27 @@
+import { NextResponse } from "next/server";
+import { createAdminClient } from "@/lib/supabase";
+
+export async function GET() {
+  try {
+    const supabase = await createAdminClient();
+
+    // Get recent contacts (last 5, ordered by creation date)
+    const { data: recentContacts, error } = await supabase
+      .from("contact_submissions")
+      .select("id, name, subject, created_at, status")
+      .order("created_at", { ascending: false })
+      .limit(5);
+
+    if (error) {
+      throw error;
+    }
+
+    return NextResponse.json(recentContacts || []);
+  } catch (error) {
+    console.error("Recent contacts error:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch recent contacts" },
+      { status: 500 }
+    );
+  }
+}
