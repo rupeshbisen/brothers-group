@@ -246,14 +246,13 @@ export default function HomePage() {
               <div className="absolute inset-0">
                 <Image
                   src={banner.image_url}
-                  alt="Banner"
+                  alt={`Banner image ${index + 1}`}
                   fill
                   className="object-cover"
                   priority={index === 0}
                   onError={() => {
                     console.error(
-                      "Banner image failed to load:",
-                      banner.image_url
+                      `Banner image failed to load: ${banner.image_url}`
                     );
                   }}
                 />
@@ -266,12 +265,14 @@ export default function HomePage() {
             <>
               <button
                 onClick={prevBanner}
+                aria-label="Previous banner"
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors z-10"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={nextBanner}
+                aria-label="Next banner"
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors z-10"
               >
                 <ChevronRight className="w-6 h-6" />
@@ -281,7 +282,11 @@ export default function HomePage() {
 
           {/* Dot Indicators */}
           {banners.length > 1 && (
-            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+            <div
+              className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10"
+              role="tablist"
+              aria-label="Banner indicators"
+            >
               {banners.map((_, index) => (
                 <button
                   key={index}
@@ -291,6 +296,10 @@ export default function HomePage() {
                       ? "bg-white"
                       : "bg-white bg-opacity-50"
                   }`}
+                  aria-label={`Go to banner ${index + 1}`}
+                  aria-selected={index === currentBannerIndex}
+                  role="tab"
+                  tabIndex={index === currentBannerIndex ? 0 : -1}
                 />
               ))}
             </div>

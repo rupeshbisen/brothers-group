@@ -76,9 +76,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only absolute left-2 top-2 bg-orange-700 text-white px-4 py-2 rounded z-50"
+        >
+          Skip to main content
+        </a>
         <div className="min-h-screen">
           <Navigation />
-          <main>{children}</main>
+          <main id="main-content" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
         </div>
       </body>

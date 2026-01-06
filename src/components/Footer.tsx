@@ -136,7 +136,10 @@ export default function Footer() {
             <div className="flex space-x-4 mb-6">
               <a
                 href="#"
+                aria-label="Facebook"
                 className="bg-orange-500 hover:bg-orange-400 text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 <span className="sr-only">Facebook</span>
                 <svg
@@ -153,7 +156,10 @@ export default function Footer() {
               </a>
               <a
                 href="https://www.instagram.com/brothers_bal_ganesh_mandal?igsh=aGp6ODBwZWN6emhs"
+                aria-label="Instagram"
                 className="bg-orange-500 hover:bg-orange-400 text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 <span className="sr-only">Instagram</span>
                 <svg
@@ -170,7 +176,10 @@ export default function Footer() {
               </a>
               <a
                 href="#"
+                aria-label="YouTube"
                 className="bg-orange-500 hover:bg-orange-400 text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 <span className="sr-only">YouTube</span>
                 <svg
