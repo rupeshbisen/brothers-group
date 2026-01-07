@@ -20,7 +20,16 @@ const nextConfig: NextConfig = {
     return config;
   },
   images: {
-    domains: ["localhost", "ik.imagekit.io"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+    ],
   },
 };
 

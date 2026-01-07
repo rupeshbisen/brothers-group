@@ -21,10 +21,10 @@ const ADMIN_ROUTES = {
 // Routes that don't need protection
 const PUBLIC_ADMIN_ROUTES = ["/admin"];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip middleware for public routes, API routes, and static files
+  // Skip proxy for public routes, API routes, and static files
   if (
     pathname.startsWith("/api/") ||
     pathname.startsWith("/_next/") ||
