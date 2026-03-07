@@ -132,6 +132,15 @@ export default function HomePage() {
     setCurrentBannerIndex(prev => (prev - 1 + banners.length) % banners.length);
   };
 
+  // Keyboard navigation for banner
+  const handleBannerKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") {
+      prevBanner();
+    } else if (e.key === "ArrowRight") {
+      nextBanner();
+    }
+  };
+
   const getInvolvedCards = [
     {
       id: 1,
@@ -189,7 +198,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section - Ultra Compact & Engaging */}
-      <section className="relative bg-gradient-to-r from-orange-600 to-orange-800 text-white pb-5 pt-12">
+      <section className="relative bg-linear-to-r from-orange-600 to-orange-800 text-white pb-5 pt-12">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight">
@@ -227,7 +236,7 @@ export default function HomePage() {
 
       {/* Dynamic Banners Section - Show after hero */}
       {loading ? (
-        <section className="relative h-[400px] md:h-[500px] overflow-hidden bg-gradient-to-r from-orange-100 to-yellow-100 flex items-center justify-center">
+        <section className="relative h-[400px] md:h-[500px] overflow-hidden bg-linear-to-r from-orange-100 to-yellow-100 flex items-center justify-center">
           <div className="text-center">
             <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-orange-600 mx-auto mb-4"></div>
             <p className="text-gray-600 text-lg">Loading banners...</p>
@@ -241,12 +250,13 @@ export default function HomePage() {
               className={`absolute inset-0 transition-opacity duration-1000 ${
                 index === currentBannerIndex ? "opacity-100" : "opacity-0"
               }`}
+              aria-hidden={index !== currentBannerIndex}
             >
               {/* Background Image */}
               <div className="absolute inset-0">
                 <Image
                   src={banner.image_url}
-                  alt={`Banner image ${index + 1}`}
+                  alt={`Brother Bal Ganesh Utsav Mandal celebration banner showing Ganesh idol and festival decorations`}
                   fill
                   className="object-cover"
                   priority={index === 0}
@@ -265,17 +275,19 @@ export default function HomePage() {
             <>
               <button
                 onClick={prevBanner}
+                onKeyDown={handleBannerKeyDown}
                 aria-label="Previous banner"
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors z-10"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-white"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-6 h-6" aria-hidden="true" />
               </button>
               <button
                 onClick={nextBanner}
+                onKeyDown={handleBannerKeyDown}
                 aria-label="Next banner"
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors z-10"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-white"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-6 h-6" aria-hidden="true" />
               </button>
             </>
           )}
@@ -308,29 +320,37 @@ export default function HomePage() {
       ) : null}
 
       {/* Spacer Section with Gradient */}
-      <section className="py-6 bg-gradient-to-r from-orange-100 via-yellow-100 to-orange-50">
+      <section className="py-6 bg-linear-to-r from-orange-100 via-yellow-100 to-orange-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center">
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full mx-auto"></div>
+            <div className="w-24 h-1 bg-linear-to-r from-orange-400 to-yellow-400 rounded-full mx-auto"></div>
           </div>
         </div>
       </section>
 
       {/* Announcements Section - Horizontal Scrolling News Bar */}
       {loading ? (
-        <section className="bg-gradient-to-r from-orange-400 to-yellow-400 py-3">
+        <section
+          className="bg-linear-to-r from-orange-400 to-yellow-400 py-3"
+          aria-live="polite"
+          aria-busy="true"
+        >
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-center space-x-4">
               {/* Latest News Button */}
               <div className="bg-red-600 text-white px-3 py-1 rounded-md text-sm font-semibold flex items-center">
-                <Bell className="w-4 h-4 mr-1" />
+                <Bell className="w-4 h-4 mr-1" aria-hidden="true" />
                 Latest News
               </div>
 
               {/* Loading State */}
               <div className="flex-1 text-center">
                 <div className="inline-flex items-center space-x-2">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  <div
+                    className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"
+                    role="status"
+                    aria-label="Loading"
+                  ></div>
                   <span className="text-black text-sm">
                     Loading announcements...
                   </span>
@@ -340,18 +360,26 @@ export default function HomePage() {
           </div>
         </section>
       ) : announcements.length > 0 ? (
-        <section className="bg-gradient-to-r from-orange-400 to-yellow-400 py-3">
+        <section
+          className="bg-linear-to-r from-orange-400 to-yellow-400 py-3"
+          aria-live="polite"
+          aria-label="Latest announcements"
+        >
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-center space-x-4">
               {/* Latest News Button */}
               <div className="bg-red-600 text-white px-3 py-1 rounded-md text-sm font-semibold flex items-center">
-                <Bell className="w-4 h-4 mr-1" />
-                Latest News
+                <Bell className="w-4 h-4 mr-1" aria-hidden="true" />
+                <span>Latest News</span>
               </div>
 
               {/* Scrolling Announcements */}
               <div className="flex-1 overflow-hidden">
-                <div className="animate-scroll whitespace-nowrap">
+                <div
+                  className="animate-scroll whitespace-nowrap"
+                  role="marquee"
+                  aria-label="Scrolling announcements"
+                >
                   {announcements.map(announcement => (
                     <span
                       key={announcement.id}
@@ -368,7 +396,7 @@ export default function HomePage() {
       ) : null}
 
       {/* Statistics Section */}
-      <section className="py-16 bg-gradient-to-r from-orange-50 to-yellow-50">
+      <section className="py-16 bg-linear-to-r from-orange-50 to-yellow-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
@@ -490,7 +518,7 @@ export default function HomePage() {
       </section>
 
       {/* Get Involved Section */}
-      <section className="py-16 bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-100">
+      <section className="py-16 bg-linear-to-br from-orange-50 via-yellow-50 to-orange-100">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">

@@ -240,7 +240,7 @@ export default function GalleryPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-orange-600 to-orange-800 text-white py-20">
+      <section className="relative bg-linear-to-r from-orange-600 to-orange-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Photo Gallery</h1>
           <p className="text-xl text-orange-100 max-w-3xl mx-auto">
@@ -436,7 +436,7 @@ export default function GalleryPage() {
                     {new Date(selectedImage.created_at).toLocaleDateString()}
                   </p>
                 </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
+                <div className="flex items-center gap-2 shrink-0">
                   <button
                     className="flex items-center gap-1 sm:gap-2 bg-gray-700 text-white px-2 sm:px-3 py-2 rounded-lg hover:bg-gray-600 transition-colors text-xs sm:text-sm"
                     onClick={e => {

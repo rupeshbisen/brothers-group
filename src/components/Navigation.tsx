@@ -41,17 +41,25 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="bg-white shadow-lg sticky top-0 z-50">
+      <nav
+        className="bg-white shadow-lg sticky top-0 z-50"
+        aria-label="Main navigation"
+      >
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3">
+            <Link
+              href="/"
+              className="flex items-center space-x-3"
+              aria-label="Brother Bal Ganesh Utsav Mandal Home"
+            >
               <Image
                 src="/logo.png"
-                alt="Brother Bal Ganesh Utsav Mandal"
+                alt="Brother Bal Ganesh Utsav Mandal logo - Lord Ganesh deity"
                 width={80}
                 height={80}
                 className="rounded-full"
+                priority
               />
             </Link>
 
@@ -68,8 +76,9 @@ export default function Navigation() {
                         ? "text-orange-600 border-b-2 border-orange-600 pb-1"
                         : "text-gray-700 hover:text-orange-600"
                     }`}
+                    aria-current={isActive(item.href) ? "page" : undefined}
                   >
-                    <IconComponent className="w-4 h-4" />
+                    <IconComponent className="w-4 h-4" aria-hidden="true" />
                     <span>{item.label}</span>
                   </Link>
                 );
@@ -80,11 +89,14 @@ export default function Navigation() {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 rounded-md text-gray-700 hover:text-orange-600 hover:bg-orange-50"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMenuOpen ? (
-                <X className="w-6 h-6" />
+                <X className="w-6 h-6" aria-hidden="true" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <Menu className="w-6 h-6" aria-hidden="true" />
               )}
             </button>
           </div>
@@ -96,14 +108,19 @@ export default function Navigation() {
         <div
           className="fixed inset-0 bg-black opacity-50 z-50 md:hidden"
           onClick={() => setIsMenuOpen(false)}
+          aria-hidden="true"
         />
       )}
 
       {/* Mobile Sidebar */}
       <div
+        id="mobile-menu"
         className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mobile-menu-title"
       >
         <div className="flex flex-col h-full">
           {/* Sidebar Header */}
@@ -111,23 +128,31 @@ export default function Navigation() {
             <div className="flex items-center space-x-3">
               <Image
                 src="/logo.png"
-                alt="Brother Bal Ganesh Utsav Mandal"
+                alt="Brother Bal Ganesh Utsav Mandal logo"
                 width={40}
                 height={40}
                 className="rounded-full"
               />
-              <span className="text-lg font-bold text-orange-600">Menu</span>
+              <span
+                id="mobile-menu-title"
+                className="text-lg font-bold text-orange-600"
+              >
+                Menu
+              </span>
             </div>
             <button
               onClick={() => setIsMenuOpen(false)}
               className="p-2 rounded-md text-gray-700 hover:text-orange-600 hover:bg-orange-50"
+              aria-label="Close menu"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
 
-          {/* Sidebar Navigation */}
-          <div className="flex-1 overflow-y-auto py-4">
+          <nav
+            className="flex-1 overflow-y-auto py-4"
+            aria-label="Mobile navigation"
+          >
             <div className="space-y-2 px-4">
               {navigationItems.map(item => {
                 const IconComponent = item.icon;
@@ -141,14 +166,15 @@ export default function Navigation() {
                         : "text-gray-700 hover:text-orange-600 hover:bg-gray-50"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
+                    aria-current={isActive(item.href) ? "page" : undefined}
                   >
-                    <IconComponent className="w-5 h-5" />
+                    <IconComponent className="w-5 h-5" aria-hidden="true" />
                     <span>{item.label}</span>
                   </Link>
                 );
               })}
             </div>
-          </div>
+          </nav>
 
           {/* Sidebar Footer */}
           <div className="p-4 border-t border-gray-200">

@@ -73,8 +73,47 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Structured Data - Organization Schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Brother Bal Ganesh Utsav Mandal",
+    alternateName: "Brothers Bal Ganesh Mandal",
+    url: baseUrl,
+    logo: `${baseUrl}/logo.png`,
+    description:
+      "Official website of Brother Bal Ganesh Utsav Mandal, Gangabagh. Join us in celebrating Ganesh Utsav with devotion and community spirit.",
+    foundingDate: "2015",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Gangabagh, Pardi",
+      addressLocality: "Nagpur",
+      addressRegion: "Maharashtra",
+      postalCode: "440035",
+      addressCountry: "IN",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+91-84088-89448",
+      contactType: "customer service",
+      areaServed: "IN",
+      availableLanguage: ["en", "hi", "mr"],
+    },
+    sameAs: [
+      "https://www.instagram.com/brothers_bal_ganesh_mandal?igsh=aGp6ODBwZWN6emhs",
+    ],
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+      </head>
       <body className={inter.className} suppressHydrationWarning={true}>
         <a
           href="#main-content"

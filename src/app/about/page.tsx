@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import {
   Star,
   Award,
@@ -9,6 +8,23 @@ import {
   Phone,
   Mail,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Us - Brother Bal Ganesh Utsav Mandal",
+  description:
+    "Learn about Brother Bal Ganesh Utsav Mandal's history, mission, and achievements. Serving the community with devotion since 2015 in Gangabagh, Nagpur.",
+  keywords:
+    "about brother bal ganesh, mandal history, community organization, gangabagh nagpur, ganesh utsav committee",
+  openGraph: {
+    title: "About Us - Brother Bal Ganesh Utsav Mandal",
+    description:
+      "Learn about Brother Bal Ganesh Utsav Mandal's history, mission, and achievements. Serving the community with devotion since 2015.",
+    type: "website",
+  },
+  alternates: {
+    canonical: "/about",
+  },
+};
 
 export default function AboutPage() {
   const achievements = [
@@ -83,7 +99,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-orange-600 to-orange-800 text-white py-20">
+      <section className="relative bg-linear-to-r from-orange-600 to-orange-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             About Our Mandal
@@ -156,7 +172,7 @@ export default function AboutPage() {
       </section>
 
       {/* Journey Timeline Section */}
-      <section className="py-16 bg-gradient-to-br from-orange-50 to-orange-100">
+      <section className="py-16 bg-linear-to-br from-orange-50 to-orange-100">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
@@ -208,7 +224,7 @@ export default function AboutPage() {
 
                   <div className="lg:w-1/2 lg:pl-8">
                     <div className="bg-white p-4 rounded-lg shadow-lg">
-                      <div className="aspect-video bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center">
+                      <div className="aspect-video bg-linear-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center">
                         <div className="text-center">
                           <Heart className="w-12 h-12 text-orange-600 mx-auto mb-2" />
                           <p className="text-orange-800 font-semibold">
@@ -224,7 +240,7 @@ export default function AboutPage() {
                 <div className="relative flex items-center">
                   <div className="lg:w-1/2 lg:pr-8 lg:text-right">
                     <div className="bg-white p-4 rounded-lg shadow-lg">
-                      <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center">
+                      <div className="aspect-video bg-linear-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center">
                         <div className="text-center">
                           <Star className="w-12 h-12 text-blue-600 mx-auto mb-2" />
                           <p className="text-blue-800 font-semibold">
@@ -303,7 +319,7 @@ export default function AboutPage() {
 
                   <div className="lg:w-1/2 lg:pl-8">
                     <div className="bg-white p-4 rounded-lg shadow-lg">
-                      <div className="aspect-video bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center">
+                      <div className="aspect-video bg-linear-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center">
                         <div className="text-center">
                           <Award className="w-12 h-12 text-purple-600 mx-auto mb-2" />
                           <p className="text-purple-800 font-semibold">
@@ -319,7 +335,7 @@ export default function AboutPage() {
                 <div className="relative flex items-center">
                   <div className="lg:w-1/2 lg:pr-8 lg:text-right">
                     <div className="bg-white p-4 rounded-lg shadow-lg">
-                      <div className="aspect-video bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center">
+                      <div className="aspect-video bg-linear-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center">
                         <div className="text-center">
                           <Heart className="w-12 h-12 text-green-600 mx-auto mb-2" />
                           <p className="text-green-800 font-semibold">
@@ -397,7 +413,7 @@ export default function AboutPage() {
 
                   <div className="lg:w-1/2 lg:pl-8">
                     <div className="bg-white p-4 rounded-lg shadow-lg">
-                      <div className="aspect-video bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center">
+                      <div className="aspect-video bg-linear-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center">
                         <div className="text-center">
                           <Star className="w-12 h-12 text-orange-600 mx-auto mb-2" />
                           <p className="text-orange-800 font-semibold">
@@ -413,7 +429,7 @@ export default function AboutPage() {
                 <div className="relative flex items-center">
                   <div className="lg:w-1/2 lg:pr-8 lg:text-right">
                     <div className="bg-white p-4 rounded-lg shadow-lg">
-                      <div className="aspect-video bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center">
+                      <div className="aspect-video bg-linear-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center">
                         <div className="text-center">
                           <Calendar className="w-12 h-12 text-orange-600 mx-auto mb-2" />
                           <p className="text-orange-800 font-semibold">

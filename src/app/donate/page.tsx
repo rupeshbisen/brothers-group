@@ -77,7 +77,7 @@ export default function DonatePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-orange-600 to-orange-800 text-white py-12 md:py-20">
+      <section className="relative bg-linear-to-r from-orange-600 to-orange-800 text-white py-12 md:py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6">
             Make a Donation
@@ -138,7 +138,14 @@ export default function DonatePage() {
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                           placeholder="Enter your name"
                           disabled={isSubmitting}
+                          aria-describedby="name-help"
                         />
+                        <p
+                          id="name-help"
+                          className="text-xs text-gray-500 mt-1"
+                        >
+                          Optional - Leave blank for anonymous donation
+                        </p>
                       </div>
 
                       <div>
@@ -184,10 +191,16 @@ export default function DonatePage() {
                           htmlFor="amount"
                           className="block text-sm font-medium text-gray-700 mb-2"
                         >
-                          Amount <span className="text-red-500">*</span>
+                          Amount{" "}
+                          <span className="text-red-500" aria-label="required">
+                            *
+                          </span>
                         </label>
                         <div className="relative">
-                          <IndianRupee className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
+                          <IndianRupee
+                            className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500"
+                            aria-hidden="true"
+                          />
                           <input
                             type="number"
                             id="amount"
@@ -198,56 +211,82 @@ export default function DonatePage() {
                             min="1"
                             required
                             disabled={isSubmitting}
+                            aria-required="true"
+                            aria-describedby="amount-help"
                           />
                         </div>
+                        <p
+                          id="amount-help"
+                          className="text-xs text-gray-500 mt-1"
+                        >
+                          Minimum donation amount is ₹1
+                        </p>
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-3 md:mb-4">
-                        Payment Method
-                      </label>
-                      <div className="space-y-2 md:space-y-3">
-                        <label className="flex items-center space-x-3 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="paymentMethod"
-                            value="upi"
-                            checked={paymentMethod === "upi"}
-                            onChange={e => setPaymentMethod(e.target.value)}
-                            className="text-orange-600 focus:ring-orange-500"
-                            disabled={isSubmitting}
-                          />
-                          <QrCode className="w-5 h-5 text-orange-600" />
-                          <span className="text-gray-700">UPI Payment</span>
-                        </label>
-                        <label className="flex items-center space-x-3 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="paymentMethod"
-                            value="bank_transfer"
-                            checked={paymentMethod === "bank_transfer"}
-                            onChange={e => setPaymentMethod(e.target.value)}
-                            className="text-orange-600 focus:ring-orange-500"
-                            disabled={isSubmitting}
-                          />
-                          <Building2 className="w-5 h-5 text-orange-600" />
-                          <span className="text-gray-700">Bank Transfer</span>
-                        </label>
-                        <label className="flex items-center space-x-3 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="paymentMethod"
-                            value="cash"
-                            checked={paymentMethod === "cash"}
-                            onChange={e => setPaymentMethod(e.target.value)}
-                            className="text-orange-600 focus:ring-orange-500"
-                            disabled={isSubmitting}
-                          />
-                          <IndianRupee className="w-5 h-5 text-orange-600" />
-                          <span className="text-gray-700">Cash Payment</span>
-                        </label>
-                      </div>
+                      <fieldset>
+                        <legend className="block text-sm font-medium text-gray-700 mb-3 md:mb-4">
+                          Payment Method <span className="text-red-500">*</span>
+                        </legend>
+                        <div
+                          className="space-y-2 md:space-y-3"
+                          role="radiogroup"
+                          aria-label="Payment method selection"
+                        >
+                          <label className="flex items-center space-x-3 cursor-pointer">
+                            <input
+                              type="radio"
+                              name="paymentMethod"
+                              value="upi"
+                              checked={paymentMethod === "upi"}
+                              onChange={e => setPaymentMethod(e.target.value)}
+                              className="text-orange-600 focus:ring-orange-500"
+                              disabled={isSubmitting}
+                              aria-label="UPI Payment"
+                            />
+                            <QrCode
+                              className="w-5 h-5 text-orange-600"
+                              aria-hidden="true"
+                            />
+                            <span className="text-gray-700">UPI Payment</span>
+                          </label>
+                          <label className="flex items-center space-x-3 cursor-pointer">
+                            <input
+                              type="radio"
+                              name="paymentMethod"
+                              value="bank_transfer"
+                              checked={paymentMethod === "bank_transfer"}
+                              onChange={e => setPaymentMethod(e.target.value)}
+                              className="text-orange-600 focus:ring-orange-500"
+                              disabled={isSubmitting}
+                              aria-label="Bank Transfer"
+                            />
+                            <Building2
+                              className="w-5 h-5 text-orange-600"
+                              aria-hidden="true"
+                            />
+                            <span className="text-gray-700">Bank Transfer</span>
+                          </label>
+                          <label className="flex items-center space-x-3 cursor-pointer">
+                            <input
+                              type="radio"
+                              name="paymentMethod"
+                              value="cash"
+                              checked={paymentMethod === "cash"}
+                              onChange={e => setPaymentMethod(e.target.value)}
+                              className="text-orange-600 focus:ring-orange-500"
+                              disabled={isSubmitting}
+                              aria-label="Cash Payment"
+                            />
+                            <IndianRupee
+                              className="w-5 h-5 text-orange-600"
+                              aria-hidden="true"
+                            />
+                            <span className="text-gray-700">Cash Payment</span>
+                          </label>
+                        </div>
+                      </fieldset>
                     </div>
 
                     <div>
@@ -336,7 +375,7 @@ export default function DonatePage() {
                           />
                           <button
                             onClick={() => handleCopy("rupeshbisen11@okaxis")}
-                            className="px-2 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-xs whitespace-nowrap flex-shrink-0"
+                            className="px-2 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-xs whitespace-nowrap shrink-0"
                           >
                             {copied ? (
                               <Check className="w-3 h-3" />
@@ -383,7 +422,7 @@ export default function DonatePage() {
                             onClick={() =>
                               handleCopy("Brother Bal Ganesh Utsav Mandal")
                             }
-                            className="px-2 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-xs whitespace-nowrap flex-shrink-0"
+                            className="px-2 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-xs whitespace-nowrap shrink-0"
                           >
                             {copied ? (
                               <Check className="w-3 h-3" />
@@ -406,7 +445,7 @@ export default function DonatePage() {
                           />
                           <button
                             onClick={() => handleCopy("1234567890")}
-                            className="px-2 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-xs whitespace-nowrap flex-shrink-0"
+                            className="px-2 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-xs whitespace-nowrap shrink-0"
                           >
                             {copied ? (
                               <Check className="w-3 h-3" />
@@ -429,7 +468,7 @@ export default function DonatePage() {
                           />
                           <button
                             onClick={() => handleCopy("ICIC0001234")}
-                            className="px-2 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-xs whitespace-nowrap flex-shrink-0"
+                            className="px-2 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-xs whitespace-nowrap shrink-0"
                           >
                             {copied ? (
                               <Check className="w-3 h-3" />

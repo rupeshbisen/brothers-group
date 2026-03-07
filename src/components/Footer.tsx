@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-orange-600 via-orange-700 to-orange-800 text-white py-12 mt-16 relative overflow-hidden">
+    <footer className="bg-linear-to-br from-orange-600 via-orange-700 to-orange-800 text-white py-12 mt-16 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 to-transparent"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-white/5 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -15,7 +15,7 @@ export default function Footer() {
               <div className="relative w-28 h-28">
                 <Image
                   src="/logo.png"
-                  alt="Brother Bal Ganesh Logo"
+                  alt="Brother Bal Ganesh Utsav Mandal logo - Lord Ganesh deity"
                   width={100}
                   height={100}
                   className="rounded-full shadow-lg"
@@ -94,7 +94,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start">
-                <span className="w-2 h-2 bg-orange-300 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span className="w-2 h-2 bg-orange-300 rounded-full mr-3 mt-2 shrink-0"></span>
                 <div>
                   <p className="text-orange-100 font-medium">Address:</p>
                   <p className="text-orange-200">Gangabagh, Pardi</p>
@@ -103,7 +103,7 @@ export default function Footer() {
                 </div>
               </li>
               <li className="flex items-center">
-                <span className="w-2 h-2 bg-orange-300 rounded-full mr-3 flex-shrink-0"></span>
+                <span className="w-2 h-2 bg-orange-300 rounded-full mr-3 shrink-0"></span>
                 <div>
                   <p className="text-orange-100 font-medium">Phone:</p>
                   <a
@@ -115,7 +115,7 @@ export default function Footer() {
                 </div>
               </li>
               <li className="flex items-center">
-                <span className="w-2 h-2 bg-orange-300 rounded-full mr-3 flex-shrink-0"></span>
+                <span className="w-2 h-2 bg-orange-300 rounded-full mr-3 shrink-0"></span>
                 <div>
                   <p className="text-orange-100 font-medium">Email:</p>
                   <a
