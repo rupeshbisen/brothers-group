@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-domain.com/</loc>
+    <loc>https://brothers-group.vercel.app/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/about</loc>
+    <loc>https://brothers-group.vercel.app/about</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/events</loc>
+    <loc>https://brothers-group.vercel.app/events</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/gallery</loc>
+    <loc>https://brothers-group.vercel.app/gallery</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/donate</loc>
+    <loc>https://brothers-group.vercel.app/donate</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/contact</loc>
+    <loc>https://brothers-group.vercel.app/contact</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/upload</loc>
+    <loc>https://brothers-group.vercel.app/upload</loc>
     <priority>0.6</priority>
   </url>
 </urlset>
